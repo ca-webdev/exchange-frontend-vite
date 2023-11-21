@@ -26,9 +26,9 @@ const BarSeries = (props) => {
 
     const seriesList = seriesDataList.map((series, index) => {
       const newSeries = chart.addBarSeries({
-        lineColor: series.lineColor,
-        topColor: series.barTopColor,
-        bottomColor: series.barBottomColor,
+        lineColor: "#2962FF",
+        areaTopColor: "#2962FF",
+        areaBottomColor: "rgba(41, 98, 255, 0.28)",
       });
 
       newSeries.setData(series.data);

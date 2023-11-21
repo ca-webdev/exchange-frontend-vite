@@ -26,9 +26,9 @@ const AreaSeries = (props) => {
 
     const seriesList = recentTrade.map((series, index) => {
       const newSeries = chart.addAreaSeries({
-        lineColor: series.lineColor,
-        topColor: series.areaTopColor,
-        bottomColor: series.areaBottomColor,
+        lineColor: "#2962FF",
+        areaTopColor: "#2962FF",
+        areaBottomColor: "rgba(41, 98, 255, 0.28)",
       });
 
       newSeries.setData(series.data);

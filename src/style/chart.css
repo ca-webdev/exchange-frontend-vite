@@ -1,0 +1,15 @@
+.chart-content {
+  display: block;
+}
+
+select {
+  margin-bottom: 5px;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  font-size: 16px;
+  color: #fff;
+  width: 220px;
+  height: 40px;
+  background-color: #000;
+}

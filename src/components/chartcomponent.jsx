@@ -5,6 +5,8 @@ import BaselineSeries from "./Chart/baselineseries";
 import CandlestickSeries from "./Chart/candlestickseries";
 import HistogramSeries from "./Chart/histogramseries";
 
+import "../style/chart.css";
+
 const ChartComponent = (props) => {
   const setSelectedSeriesList = ["Area", "Bar", "Baseline", "Candlestick", "Histogram"];
   const [selectedSeries, setSelectedSeries] = useState("Area");
@@ -14,9 +16,10 @@ const ChartComponent = (props) => {
   };
 
   return (
-    <>
+    <div className="chart-content">
+      <h3>Chart</h3>
       <div>
-        <label>Select Series: </label>
+        <label>Select Chart: </label>
         <select
           onChange={(e) => handleSeriesChange(e.target.value)}
           value={selectedSeries}
@@ -33,7 +36,7 @@ const ChartComponent = (props) => {
       {selectedSeries === "Baseline" && <BaselineSeries {...props} />}
       {selectedSeries === "Candlestick" && <CandlestickSeries {...props} />}
       {selectedSeries === "Histogram" && <HistogramSeries {...props} />}
-    </>
+    </div>
   );
 };
 

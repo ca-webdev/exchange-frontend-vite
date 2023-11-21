@@ -1,0 +1,12 @@
+.dashboard-content {
+    display: flex;
+    justify-content: center;
+}
+
+.chart-component {
+    flex-grow: 4;
+}
+
+.recenttrade-component {
+    flex-grow: 2;
+}

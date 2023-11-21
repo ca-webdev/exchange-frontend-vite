@@ -1,12 +1,11 @@
 import ChartComponent from "../components/chartcomponent";
 import RecentTradesComponent from "../components/recenttradescomponent";
 
+import "../style/dashboard.css";
+
 const dashboard = (props) => {
   const seriesDataList = [
     {
-      lineColor: "#2962FF",
-      areaTopColor: "#2962FF",
-      areaBottomColor: "rgba(41, 98, 255, 0.28)",
       data: [
         {
           time: "2019-01-02",
@@ -167,11 +166,14 @@ const dashboard = (props) => {
   ];
 
   const recentTrade = [
-        {
-      lineColor: "#2962FF",
-      areaTopColor: "#2962FF",
-      areaBottomColor: "rgba(41, 98, 255, 0.28)",
+    {
       data: [
+        { time: "2022-12-16", value: 29.51 },
+        { time: "2022-12-17", value: 27.51 },
+        { time: "2022-12-18", value: 30.51 },
+        { time: "2022-12-19", value: 26.51 },
+        { time: "2022-12-20", value: 25.51 },
+        { time: "2022-12-21", value: 23.51 },
         { time: "2022-12-22", value: 32.51 },
         { time: "2022-12-23", value: 31.11 },
         { time: "2022-12-24", value: 27.02 },
@@ -184,17 +186,21 @@ const dashboard = (props) => {
         { time: "2022-12-31", value: 22.67 },
       ],
     },
-  ]
-  
+  ];
 
   return (
-    <>
-      {/* <button type="button" onClick={() => setStarted((current) => !current)}>
-        {started ? "Stop updating" : "Start updating series"}
-      </button> */}
-      <ChartComponent {...props} seriesDataList={seriesDataList} recentTrade={recentTrade}/>
-      <RecentTradesComponent {...props} recentTrade={recentTrade}/>
-    </>
+    <div className="dashboard-content">
+      <div className="chart-component">
+        <ChartComponent
+          {...props}
+          seriesDataList={seriesDataList}
+          recentTrade={recentTrade}
+        />
+      </div>
+      <div className="recenttrade-component">
+        <RecentTradesComponent {...props} recentTrade={recentTrade} />
+      </div>
+    </div>
   );
 };
 

@@ -1,9 +1,11 @@
+import "../style/recenttrade.css";
+
 const RecentTradesComponent = (props) => {
   const { recentTrade } = props;
 
   return (
-    <>
-      <h2>Recent Trades</h2>
+    <div className="recenttrade-content">
+      <h3>Recent Trades</h3>
       <table>
         {recentTrade[0] &&
           recentTrade[0].data &&
@@ -17,7 +19,7 @@ const RecentTradesComponent = (props) => {
             );
           })}
       </table>
-    </>
+    </div>
   );
 };
 
