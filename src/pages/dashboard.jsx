@@ -1,4 +1,5 @@
 import ChartComponent from "../components/chartcomponent";
+import RecentTradesComponent from "../components/recenttradescomponent";
 
 const dashboard = (props) => {
   const seriesDataList = [
@@ -192,6 +193,7 @@ const dashboard = (props) => {
         {started ? "Stop updating" : "Start updating series"}
       </button> */}
       <ChartComponent {...props} seriesDataList={seriesDataList} recentTrade={recentTrade}/>
+      <RecentTradesComponent {...props} recentTrade={recentTrade}/>
     </>
   );
 };
