@@ -1,9 +1,9 @@
-import { createChart, ColorType } from 'lightweight-charts';
-import { useEffect, useRef } from 'react';
+import { createChart, ColorType } from "lightweight-charts";
+import { useEffect, useRef } from "react";
 
-const AreaSeries = (props) => {
+const CandlestickSeries = (props) => {
   const {
-    recentTrade,
+    seriesDataList,
     colors: { backgroundColor = "white", textColor = "black" } = {},
   } = props;
 
@@ -24,11 +24,11 @@ const AreaSeries = (props) => {
     });
     chart.timeScale().fitContent();
 
-    const seriesList = recentTrade.map((series, index) => {
-      const newSeries = chart.addAreaSeries({
+    const seriesList = seriesDataList.map((series, index) => {
+      const newSeries = chart.addCandlestickSeries({
         lineColor: series.lineColor,
-        topColor: series.areaTopColor,
-        bottomColor: series.areaBottomColor,
+        topColor: series.barTopColor,
+        bottomColor: series.barBottomColor,
       });
 
       newSeries.setData(series.data);
@@ -43,7 +43,7 @@ const AreaSeries = (props) => {
       seriesList.forEach((series) => chart.removeSeries(series));
       chart.remove();
     };
-  }, [recentTrade, backgroundColor, textColor]);
+  }, [seriesDataList, backgroundColor, textColor]);
 
   return (
     <div>
@@ -52,4 +52,4 @@ const AreaSeries = (props) => {
   );
 };
 
-export default AreaSeries;
+export default CandlestickSeries;

@@ -1,31 +1,38 @@
-// import { useState } from 'react';
-// import AreaSeries from "./Chart/areaseries";
+import { useState } from 'react';
 import AreaSeries from "./Chart/areaseries";
 import BarSeries from "./Chart/barseries";
+import BaselineSeries from "./Chart/baselineseries";
+import CandlestickSeries from "./Chart/candlestickseries";
+import HistogramSeries from "./Chart/histogramseries";
 
 const ChartComponent = (props) => {
-  // const [selectedSeriesIndex, setSelectedSeriesIndex] = useState(0);
+  const setSelectedSeriesList = ["Area", "Bar", "Baseline", "Candlestick", "Histogram"];
+  const [selectedSeries, setSelectedSeries] = useState("Area");
 
-  // const handleSeriesChange = (index) => {
-  //   setSelectedSeriesIndex(index);
-  // };
+  const handleSeriesChange = (index) => {
+    setSelectedSeries(index);
+  };
 
   return (
     <>
-      {/* <div>
+      <div>
         <label>Select Series: </label>
         <select
           onChange={(e) => handleSeriesChange(e.target.value)}
-          value={selectedSeriesIndex}
+          value={selectedSeries}
         >
-          {seriesDataList.map((_, index) => (
-            <option key={index} value={index}>
-              Series {index + 1}
+          {setSelectedSeriesList.map((value, index) => (
+            <option key={index} value={value}>
+              {value}
             </option>
           ))}
         </select>
-      </div> */}
-      <BarSeries {...props} />
+      </div>
+      {selectedSeries === "Area" && <AreaSeries {...props} />}
+      {selectedSeries === "Bar" && <BarSeries {...props} />}
+      {selectedSeries === "Baseline" && <BaselineSeries {...props} />}
+      {selectedSeries === "Candlestick" && <CandlestickSeries {...props} />}
+      {selectedSeries === "Histogram" && <HistogramSeries {...props} />}
     </>
   );
 };

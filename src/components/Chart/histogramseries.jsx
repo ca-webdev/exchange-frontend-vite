@@ -1,7 +1,7 @@
 import { createChart, ColorType } from 'lightweight-charts';
 import { useEffect, useRef } from 'react';
 
-const AreaSeries = (props) => {
+const HistogramSeries = (props) => {
   const {
     recentTrade,
     colors: { backgroundColor = "white", textColor = "black" } = {},
@@ -25,7 +25,7 @@ const AreaSeries = (props) => {
     chart.timeScale().fitContent();
 
     const seriesList = recentTrade.map((series, index) => {
-      const newSeries = chart.addAreaSeries({
+      const newSeries = chart.addHistogramSeries({
         lineColor: series.lineColor,
         topColor: series.areaTopColor,
         bottomColor: series.areaBottomColor,
@@ -52,4 +52,4 @@ const AreaSeries = (props) => {
   );
 };
 
-export default AreaSeries;
+export default HistogramSeries;
