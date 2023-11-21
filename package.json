@@ -10,10 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@stomp/stompjs": "^7.0.0",
+    "jquery": "^3.7.1",
     "lightweight-charts": "^4.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-ts-tradingview-widgets": "^1.2.0"
+    "react-ts-tradingview-widgets": "^1.2.0",
+    "stompjs": "^2.3.3"
   },
   "devDependencies": {
     "@types/react": "^18.2.37",
