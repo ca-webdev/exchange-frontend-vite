@@ -2,22 +2,27 @@ import React, { useState, useEffect } from 'react';
 import { Client } from '@stomp/stompjs';
 import $ from 'jquery';
 
-const WebSocketComponent = () => {
+const WebSocketComponent = (props) => {
   const [stompClient, setStompClient] = useState(null);
   const [connected, setConnected] = useState(false);
-  const [orderbookupdates, setOrderBookUpdates] = useState([]);
+  const { setOrderBook, setRecentTrade } = props;
 
   useEffect(() => {
     const initializeStompClient = () => {
       const client = new Client({
-        brokerURL: 'ws://localhost:8080/exchange-websocket'
+        brokerURL: import.meta.env.VITE_BROKER_URL
       });
 
       const handleConnect = (frame) => {
         setConnected(true);
         console.log('Connected: ' + frame);
         client.subscribe('/topic/orderbookupdates', (orderbookupdate) => {
-          showOrderBookUpdate(orderbookupdate.body);
+          console.log("Topic orderbookupdates subscribed!")
+          showOrderBookUpdate(JSON.parse(orderbookupdate.body));
+        });
+        client.subscribe('/topic/recenttrades', (recentTrade) => {
+          console.log("Topic recenttrades subscribed!")
+          showRecentTradeUpdate(JSON.parse(recentTrade.body));
         });
       };
 
@@ -75,7 +80,11 @@ const WebSocketComponent = () => {
   };
 
   const showOrderBookUpdate = (message) => {
-    setOrderBookUpdates((prevUpdates) => [...prevUpdates, message]);
+    setOrderBook((prevUpdates) => [...prevUpdates, message]);
+  };
+
+  const showRecentTradeUpdate = (message) => {
+    setRecentTrade((prevUpdates) => [...prevUpdates, message]);
   };
 
   return (
@@ -90,22 +99,6 @@ const WebSocketComponent = () => {
         <input type="text" id="instruction" />
         <button onClick={sendName}>Send</button>
       </form>
-      <div>
-        <table>
-          <thead>
-            <tr>
-              <th>Order Book Updates</th>
-            </tr>
-          </thead>
-          <tbody>
-            {orderbookupdates.map((update, index) => (
-              <tr key={index}>
-                <td>{update}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
     </div>
   );
 };
