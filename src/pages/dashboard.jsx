@@ -4,14 +4,14 @@ import RecentTradesComponent from "../components/recenttradescomponent";
 import "../style/dashboard.css";
 
 const dashboard = (props) => {
-  const { orderbook, recentTrade } = props;
+  const { ohlc, recentTrade } = props;
 
   return (
     <div className="dashboard-content">
       <div className="chart-component">
         <ChartComponent
           {...props}
-          seriesDataList={orderbook}
+          ohlc={ohlc}
           recentTrade={recentTrade}
         />
       </div>

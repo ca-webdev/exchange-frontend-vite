@@ -7,12 +7,14 @@ import "./App.css";
 function App(props) {
   const [orderbook, setOrderBook] = useState([]);
   const [recentTrade, setRecentTrade] = useState([]);
+  const [ohlc, setOhlc] = useState([]);
   console.log("orderbook", orderbook);
   console.log("recentTrade", recentTrade);
+  console.log("ohlc", ohlc);
   return (
     <>
-      <WebSocketComponent setOrderBook={setOrderBook} setRecentTrade={setRecentTrade} />
-      <Dashboard {...props} orderbook={orderbook} recentTrade={recentTrade} />
+      <WebSocketComponent setOrderBook={setOrderBook} setRecentTrade={setRecentTrade} setOhlc={setOhlc} />
+      <Dashboard {...props} orderbook={orderbook} recentTrade={recentTrade} ohlc={ohlc} />
     </>
   );
 }

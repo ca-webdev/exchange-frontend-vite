@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@stomp/stompjs": "^7.0.0",
+    "highcharts": "^11.2.0",
+    "highcharts-react-official": "^3.2.1",
     "jquery": "^3.7.1",
     "lightweight-charts": "^4.1.1",
     "moment": "^2.29.4",

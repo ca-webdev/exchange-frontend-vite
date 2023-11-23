@@ -1,38 +1,42 @@
-import React, { useState, useEffect } from 'react';
-import { Client } from '@stomp/stompjs';
-import $ from 'jquery';
+import React, { useState, useEffect } from "react";
+import { Client } from "@stomp/stompjs";
+import $ from "jquery";
 
 const WebSocketComponent = (props) => {
   const [stompClient, setStompClient] = useState(null);
   const [connected, setConnected] = useState(false);
-  const { setOrderBook, setRecentTrade } = props;
+  const { setOrderBook, setRecentTrade, setOhlc } = props;
 
   useEffect(() => {
     const initializeStompClient = () => {
       const client = new Client({
-        brokerURL: import.meta.env.VITE_BROKER_URL
+        brokerURL: import.meta.env.VITE_BROKER_URL,
       });
 
       const handleConnect = (frame) => {
         setConnected(true);
-        console.log('Connected: ' + frame);
-        client.subscribe('/topic/orderbookupdates', (orderbookupdate) => {
-          console.log("Topic orderbookupdates subscribed!")
+        console.log("Connected: " + frame);
+        client.subscribe("/topic/orderbookupdates", (orderbookupdate) => {
+          console.log("Topic orderbookupdates subscribed!");
           showOrderBookUpdate(JSON.parse(orderbookupdate.body));
         });
-        client.subscribe('/topic/recenttrades', (recentTrade) => {
-          console.log("Topic recenttrades subscribed!")
+        client.subscribe("/topic/recenttrades", (recentTrade) => {
+          console.log("Topic recenttrades subscribed!");
           showRecentTradeUpdate(JSON.parse(recentTrade.body));
+        });
+        client.subscribe("/topic/ohlc", (ohlc) => {
+          console.log("Topic ohlc subscribed!");
+          showOhlcUpdate(JSON.parse(ohlc.body));
         });
       };
 
       const handleWebSocketError = (error) => {
-        console.error('Error with websocket', error);
+        console.error("Error with websocket", error);
       };
 
       const handleStompError = (frame) => {
-        console.error('Broker reported error: ' + frame.headers['message']);
-        console.error('Additional details: ' + frame.body);
+        console.error("Broker reported error: " + frame.headers["message"]);
+        console.error("Additional details: " + frame.body);
       };
 
       client.onConnect = handleConnect;
@@ -49,7 +53,7 @@ const WebSocketComponent = (props) => {
       if (stompClient) {
         stompClient.deactivate();
         setConnected(false);
-        console.log('Disconnected');
+        console.log("Disconnected");
       }
     };
   }, []); // Empty dependency array to run the effect only once
@@ -64,18 +68,18 @@ const WebSocketComponent = (props) => {
     if (stompClient) {
       stompClient.deactivate();
       setConnected(false);
-      console.log('Disconnected');
+      console.log("Disconnected");
     }
   };
 
   const sendName = () => {
     if (stompClient && stompClient.connected) {
       stompClient.publish({
-        destination: '/app/orderinsert',
-        body: JSON.stringify({ 'instruction': $('#instruction').val() })
+        destination: "/app/orderinsert",
+        body: JSON.stringify({ instruction: $("#instruction").val() }),
       });
     } else {
-      console.error('WebSocket is not open. Cannot send message.');
+      console.error("WebSocket is not open. Cannot send message.");
     }
   };
 
@@ -85,6 +89,10 @@ const WebSocketComponent = (props) => {
 
   const showRecentTradeUpdate = (message) => {
     setRecentTrade((prevUpdates) => [...prevUpdates, message]);
+  };
+
+  const showOhlcUpdate = (message) => {
+    setOhlc((prevUpdates) => [...prevUpdates, message]);
   };
 
   return (
