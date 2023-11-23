@@ -12,7 +12,7 @@ const RecentTradesComponent = (props) => {
       <div className="table-overflow">
         <table>
           {reversedTrades.map((trade, index) => {
-            const date = new Date(trade.tradeTime);
+            const date = new Date(trade.tradeTime* 1000);
             return (
               <tr
                 key={index}

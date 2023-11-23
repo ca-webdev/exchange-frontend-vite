@@ -2,10 +2,9 @@ import { createChart, ColorType } from 'lightweight-charts';
 import { useEffect, useRef } from 'react';
 
 const CandlestickSeries = (props) => {
-  const { ohlc, colors: { backgroundColor = 'gray', textColor = 'white' } = {} } = props;
+  const { ohlc, colors: { backgroundColor = 'gray', textColor = 'black' } = {} } = props;
 
   const chartContainerRef = useRef();
-  const chartRef = useRef(null);
 
   useEffect(() => {
     if (chartContainerRef.current) {

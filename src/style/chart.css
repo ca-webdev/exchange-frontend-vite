@@ -13,3 +13,10 @@ select {
   height: 40px;
   background-color: #000;
 }
+
+/* Mobile styles */
+@media screen and (max-width: 600px) {
+  select {
+    width: 100%;
+  }
+}

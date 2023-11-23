@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Client } from "@stomp/stompjs";
 import $ from "jquery";
+import BuySellComponent from "./buysellcomponent";
 
 const WebSocketComponent = (props) => {
   const [stompClient, setStompClient] = useState(null);
   const [connected, setConnected] = useState(false);
   const { setOrderBook, setRecentTrade, setOhlc } = props;
+
+  const URL = import.meta.env.VITE_GET_URL;
 
   useEffect(() => {
     const initializeStompClient = () => {
@@ -32,6 +35,11 @@ const WebSocketComponent = (props) => {
 
       const handleWebSocketError = (error) => {
         console.error("Error with websocket", error);
+        // Attempt reconnection after a delay (e.g., 5 seconds)
+        setTimeout(() => {
+          console.log("Attempting to reconnect...");
+          initializeStompClient();
+        }, 5000);
       };
 
       const handleStompError = (frame) => {
@@ -54,23 +62,45 @@ const WebSocketComponent = (props) => {
         stompClient.deactivate();
         setConnected(false);
         console.log("Disconnected");
+
+        // Attempt reconnection after a delay (e.g., 5 seconds)
+        setTimeout(() => {
+          console.log("Attempting to reconnect...");
+          initializeStompClient();
+        }, 5000);
       }
     };
   }, []); // Empty dependency array to run the effect only once
 
-  const connect = () => {
-    if (stompClient) {
-      stompClient.activate();
-    }
-  };
+  useEffect(() => {
+    const fetchInitialData = async () => {
+      try {
+        const recentTradesResponse = await fetch(URL + "recenttrades");
+        const recentTrades = await recentTradesResponse.json();
+        const totalRecentTradesLength = recentTrades.length;
+        const newestRecentTrades =
+          totalRecentTradesLength > 200 ? recentTrades.slice(totalRecentTradesLength - 200) : recentTrades;
 
-  const disconnect = () => {
-    if (stompClient) {
-      stompClient.deactivate();
-      setConnected(false);
-      console.log("Disconnected");
-    }
-  };
+        setRecentTrade((prevRecentTrade) => [...newestRecentTrades, ...prevRecentTrade]);
+
+        const ohlcResponse = await fetch(URL + "ohlc");
+        const ohlcData = await ohlcResponse.json();
+        const totalOhlcLength = ohlcData.length;
+        const newestOhlc = totalOhlcLength > 200 ? ohlcData.slice(totalOhlcLength - 200) : ohlcData;
+
+        setOhlc((prevOhlc) => [...newestOhlc, ...prevOhlc]);
+
+        // Connect to WebSocket after fetching initial data
+        if (stompClient) {
+          stompClient.activate();
+        }
+      } catch (error) {
+        console.error("Error fetching initial data:", error);
+      }
+    };
+
+    fetchInitialData();
+  }, [stompClient]); // Add stompClient as a dependency to run the effect when it changes
 
   const sendName = () => {
     if (stompClient && stompClient.connected) {
@@ -96,18 +126,9 @@ const WebSocketComponent = (props) => {
   };
 
   return (
-    <div>
-      <button onClick={connect} disabled={connected}>
-        Connect
-      </button>
-      <button onClick={disconnect} disabled={!connected}>
-        Disconnect
-      </button>
-      <form onSubmit={(e) => e.preventDefault()}>
-        <input type="text" id="instruction" />
-        <button onClick={sendName}>Send</button>
-      </form>
-    </div>
+    <>
+    <BuySellComponent {...props} sendName={sendName}/>
+    </>
   );
 };
 

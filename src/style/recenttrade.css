@@ -19,7 +19,7 @@ tr:nth-child(even) {
   background-color: #363636;
 }
 
-.table-overflow{
+.table-overflow {
   height: 500px;
   overflow: auto;
 }
@@ -30,23 +30,39 @@ tr:nth-child(even) {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  background: #f1f1f1;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888; 
+  background: #888;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: #555;
 }
 
-.color-green{
+.color-green {
   color: green;
 }
 
-.color-red{
+.color-red {
   color: red;
+}
+
+/* Mobile styles */
+@media screen and (max-width: 600px) {
+  table {
+    font-size: 10px; 
+  }
+
+  td,
+  th {
+    padding: 2px; 
+  }
+
+  .table-overflow {
+    max-height: none; 
+  }
 }

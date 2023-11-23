@@ -9,7 +9,7 @@ import "../style/chart.css";
 
 const ChartComponent = (props) => {
   const setSelectedSeriesList = ["Area", "Bar", "Baseline", "Candlestick", "Histogram"];
-  const [selectedSeries, setSelectedSeries] = useState("Area");
+  const [selectedSeries, setSelectedSeries] = useState("Candlestick");
 
   const handleSeriesChange = (index) => {
     setSelectedSeries(index);

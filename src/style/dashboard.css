@@ -1,12 +1,27 @@
 .dashboard-content {
     display: flex;
     justify-content: center;
-}
-
-.chart-component {
+  }
+  
+  .chart-component {
     flex-grow: 4;
-}
-
-.recenttrade-component {
+  }
+  
+  .recenttrade-component {
     flex-grow: 2;
-}
+  }
+  
+  /* Mobile styles */
+  @media screen and (max-width: 600px) {
+    .dashboard-content {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .chart-component,
+    .recenttrade-component {
+      flex-grow: 1;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+  }
