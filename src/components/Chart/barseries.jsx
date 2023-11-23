@@ -2,7 +2,7 @@ import { createChart, ColorType } from 'lightweight-charts';
 import { useEffect, useRef } from 'react';
 
 const BarSeries = (props) => {
-  const { ohlc, colors: { backgroundColor = 'gray', textColor = 'white' } = {} } = props;
+  const { ohlc, colors: { backgroundColor = 'black', textColor = 'white' } = {} } = props;
 
   const chartContainerRef = useRef();
 

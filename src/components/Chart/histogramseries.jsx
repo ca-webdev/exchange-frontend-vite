@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 const HistogramSeries = (props) => {
   const {
     recentTrade,
-    colors: { backgroundColor = 'gray', textColor = 'white' } = {},
+    colors: { backgroundColor = 'black', textColor = 'white' } = {},
   } = props;
 
   const chartContainerRef = useRef();
