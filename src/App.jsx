@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Dashboard from "./pages/dashboard";
 import WebSocketComponent from "./components/websocketcomponent";
+import NavBar from "./components/navbar";
 
 import "./App.css";
 
@@ -11,6 +12,7 @@ function App(props) {
   console.log("orderbook", orderbook);
   return (
     <>
+      <NavBar />
       <WebSocketComponent setOrderBook={setOrderBook} setRecentTrade={setRecentTrade} setOhlc={setOhlc} />
       <Dashboard {...props} orderbook={orderbook} recentTrade={recentTrade} ohlc={ohlc} />
     </>

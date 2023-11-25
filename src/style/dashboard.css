@@ -4,11 +4,11 @@
   }
   
   .chart-component {
-    flex-grow: 4;
+    width: 58%;
   }
   
   .recenttrade-component {
-    flex-grow: 2;
+    width: 20%;
   }
   
   /* Mobile styles */

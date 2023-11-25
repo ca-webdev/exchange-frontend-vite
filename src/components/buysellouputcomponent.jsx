@@ -1,15 +1,14 @@
-import "../style/recenttrade.css";
+import "../style/buyselloutput.css";
 
-const RecentTradesComponent = (props) => {
+const BuySellOuputComponent = (props) => {
   const { recentTrade } = props;
 
-  // Reverse the order of trades
   const reversedTrades = recentTrade ? [...recentTrade].reverse() : [];
 
   return (
-    <div className="recenttrade-content">
-      <h3 className="recenttrade-title">Recent Trades</h3>
-      <div className="table-overflow">
+    <div className="buyselloutput-content">
+      <h3 className="buyselloutput-title">Order History</h3>
+      <div className="buyselloutput-table-overflow">
         <table>
           <tr>
             <th>Price</th>
@@ -17,7 +16,7 @@ const RecentTradesComponent = (props) => {
             <th>Time</th>
             <th>Taker Side</th>
           </tr>
-          {reversedTrades.map((trade, index) => {
+          {/* {reversedTrades.map((trade, index) => {
             const date = new Date(trade.tradeTime * 1000);
             return (
               <tr
@@ -32,11 +31,11 @@ const RecentTradesComponent = (props) => {
                 <td>{trade.takerSide}</td>
               </tr>
             );
-          })}
+          })} */}
         </table>
       </div>
     </div>
   );
 };
 
-export default RecentTradesComponent;
+export default BuySellOuputComponent;

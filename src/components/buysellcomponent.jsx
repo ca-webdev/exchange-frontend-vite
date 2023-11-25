@@ -3,7 +3,7 @@ import "../style/buysell.css";
 const BuySellComponent = (props) => {
   const { sendName } = props;
   return (
-    <div>
+    <div className="buysell-centent">
       <form onSubmit={(e) => e.preventDefault()}>
         <select id="action" name="action" className="custom-select">
           <option value="B">Buy</option>

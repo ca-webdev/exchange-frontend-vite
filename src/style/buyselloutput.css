@@ -1,10 +1,11 @@
-.recenttrade-content {
+.buyselloutput-content {
   display: block;
-  box-shadow: 5px 2px 10px #5a5a5a;
+  box-shadow: 2px 2px 10px #5a5a5a;
   background: rgb(90, 90, 90, 0.4);
+  margin: 10px;
 }
 
-.recenttrade-title {
+.buyselloutput-title {
   margin: 15px 10px;
 }
 
@@ -12,7 +13,7 @@ table {
   font-size: 12px;
   border-collapse: collapse;
   width: 100%;
-  max-height: 500px;
+  max-height: 100px;
 }
 
 td,
@@ -25,13 +26,28 @@ tr:nth-child(even) {
   background-color: #363636;
 }
 
-.table-overflow {
-  height: 500px;
+.buyselloutput-table-overflow {
+  height: 100px;
   overflow: auto;
 }
 
 ::-webkit-scrollbar {
   width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 .color-green {
@@ -45,12 +61,12 @@ tr:nth-child(even) {
 /* Mobile styles */
 @media screen and (max-width: 600px) {
   table {
-    font-size: 10px; 
+    font-size: 10px;
   }
 
   td,
   th {
-    padding: 2px; 
+    padding: 2px;
   }
 
   .table-overflow {

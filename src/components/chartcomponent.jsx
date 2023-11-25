@@ -17,7 +17,7 @@ const ChartComponent = (props) => {
 
   return (
     <div className="chart-content">
-      <h3>Chart</h3>
+      <h3 className="chart-title">Chart</h3>
       <div>
         <label>Select Chart: </label>
         <select

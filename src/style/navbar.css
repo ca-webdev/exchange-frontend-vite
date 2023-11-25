@@ -1,0 +1,8 @@
+.navbar-content{
+    display: flex;
+}
+
+.logo {
+    width: 400px;
+    margin: auto;
+}

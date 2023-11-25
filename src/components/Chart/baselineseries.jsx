@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 const Baseline = (props) => {
   const {
     recentTrade,
-    colors: { backgroundColor = 'black', textColor = 'white' } = {},
+    colors: { backgroundColor = 'rgb(90, 90, 90, 0.1)', textColor = 'white' } = {},
   } = props;
 
   const chartContainerRef = useRef();
