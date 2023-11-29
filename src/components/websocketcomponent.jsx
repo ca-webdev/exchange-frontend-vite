@@ -115,9 +115,25 @@ const WebSocketComponent = (props) => {
         const orderUpdatesResponse = await fetch(URL + "orderupdates");
         const orderUpdatesData = await orderUpdatesResponse.json();
 
-        orderUpdatesData.forEach((update) => {
-          showGroupOrderUpdate(update);
-        });
+        if (typeof orderUpdatesData === "object" && orderUpdatesData !== null) {
+          // Iterate over keys of the dictionary
+          for (const key in orderUpdatesData) {
+            if (Object.hasOwnProperty.call(orderUpdatesData, key)) {
+              const update = orderUpdatesData[key];
+              if (Array.isArray(update)) {
+                update.forEach((item) => {
+                  showGroupOrderUpdate(item);
+                });
+              }
+            }
+          }
+        } else {
+          // Handle the case where orderUpdatesData is not a dictionary
+          console.error(
+            "Unexpected data format for order updates:",
+            orderUpdatesData
+          );
+        }
 
         // Connect to WebSocket after fetching initial data
         if (stompClient) {
@@ -166,7 +182,7 @@ const WebSocketComponent = (props) => {
       const index = prevGroupedOrderUpdates.findIndex(
         (group) => group.orderId === newOrderUpdate.orderId
       );
-  
+
       if (index === -1) {
         return [
           ...prevGroupedOrderUpdates,
