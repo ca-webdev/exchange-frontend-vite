@@ -13,6 +13,7 @@ const WebSocketComponent = (props) => {
     setUserTrade,
     setOrderUpdate,
     setPositionpnl,
+    showPopup,
   } = props;
 
   const URL = import.meta.env.VITE_GET_URL;
@@ -180,9 +181,11 @@ const WebSocketComponent = (props) => {
         return response.json();
       })
       .then((data) => {
+        showPopup(data.message);
         console.log("POST request successful", data);
       })
       .catch((error) => {
+        showPopup(error.message);
         console.error("Error making POST request:", error);
       });
   };

@@ -4,7 +4,7 @@ import PortfolioComponent from "./PortfolioComponent";
 import "../style/buyselloutput.css";
 
 const BuySellOutputComponent = (props) => {
-  const { orderupdate, positionpnl } = props;
+  const { orderupdate, positionpnl, showPopup } = props;
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [dropdownStates, setDropdownStates] = useState({});
   const [activeTab, setActiveTab] = useState("orderHistory"); // Default to "orderHistory"
@@ -28,9 +28,11 @@ const BuySellOutputComponent = (props) => {
         return response.json();
       })
       .then((data) => {
+        showPopup(data.message);
         console.log("POST request successful", data);
       })
       .catch((error) => {
+        showPopup(error.message);
         console.error("Error making POST request:", error);
       });
   };
