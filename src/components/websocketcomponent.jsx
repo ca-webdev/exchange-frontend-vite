@@ -112,6 +112,13 @@ const WebSocketComponent = (props) => {
 
         setOhlc((prevOhlc) => [...newestOhlc, ...prevOhlc]);
 
+        const orderUpdatesResponse = await fetch(URL + "orderupdates");
+        const orderUpdatesData = await orderUpdatesResponse.json();
+
+        orderUpdatesData.forEach((update) => {
+          showGroupOrderUpdate(update);
+        });
+
         // Connect to WebSocket after fetching initial data
         if (stompClient) {
           stompClient.activate();

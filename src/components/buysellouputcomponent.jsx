@@ -5,10 +5,11 @@ const BuySellOutputComponent = (props) => {
   const { orderupdate } = props;
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [dropdownStates, setDropdownStates] = useState({});
+  const URL = import.meta.env.VITE_GET_URL;
 
   const handleCancelOrder = (orderId) => {
     // Perform a POST request to cancel the order
-    fetch(`http://localhost:8080/ordercancel`, {
+    fetch(URL + "ordercancel", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
