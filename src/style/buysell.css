@@ -50,6 +50,12 @@
   background-color: #000; /* Darker green on hover */
 }
 
+.error-message {
+  color: red;
+  margin-top: 5px;
+  font-size: 12px;
+}
+
 /* Mobile styles */
 @media only screen and (max-width: 600px) {
   .custom-select {
