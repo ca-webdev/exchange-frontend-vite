@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PortfolioComponent from "./PortfolioComponent";
+import PortfolioComponent from "./portfoliocomponent";
 
 import "../style/buyselloutput.css";
 

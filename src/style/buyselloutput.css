@@ -66,6 +66,7 @@ tr:nth-child(even) {
   border: 1px solid #767676;
   border-radius: 4px;
   cursor: pointer;
+  z-index: 1000;
 }
 
 .cancel-button:hover {
