@@ -11,13 +11,14 @@ function App(props) {
   const [ohlc, setOhlc] = useState([]);
   const [orderupdate, setOrderUpdate] = useState([]);
   const [usertrade, setUserTrade] = useState([]);
+  const [positionpnl, setPositionpnl] = useState({});
   console.log("orderbook", orderbook);
 
   return (
     <>
       <NavBar />
-      <WebSocketComponent setOrderBook={setOrderBook} setRecentTrade={setRecentTrade} setOhlc={setOhlc} setOrderUpdate={setOrderUpdate} setUserTrade={setUserTrade}/>
-      <Dashboard {...props} orderbook={orderbook} recentTrade={recentTrade} ohlc={ohlc} orderupdate={orderupdate} usertrade={usertrade} />
+      <WebSocketComponent setOrderBook={setOrderBook} setRecentTrade={setRecentTrade} setOhlc={setOhlc} setOrderUpdate={setOrderUpdate} setUserTrade={setUserTrade} setPositionpnl={setPositionpnl} />
+      <Dashboard {...props} orderbook={orderbook} recentTrade={recentTrade} ohlc={ohlc} orderupdate={orderupdate} usertrade={usertrade} positionpnl={positionpnl} />
     </>
   );
 }

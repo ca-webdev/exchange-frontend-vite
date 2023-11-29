@@ -12,6 +12,7 @@ const WebSocketComponent = (props) => {
     setOhlc,
     setUserTrade,
     setOrderUpdate,
+    setPositionpnl,
   } = props;
 
   const URL = import.meta.env.VITE_GET_URL;
@@ -37,6 +38,10 @@ const WebSocketComponent = (props) => {
     client.subscribe("/topic/orderupdates", (orderUpdate) => {
       console.log("Topic orderupdates subscribed!");
       showGroupOrderUpdate(JSON.parse(orderUpdate.body));
+    });
+    client.subscribe("/topic/positionpnl", (positionpnl) => {
+      console.log("Topic positionpnl subscribed!");
+      showPositionpnl(JSON.parse(positionpnl.body));
     });
   };
 
@@ -134,6 +139,11 @@ const WebSocketComponent = (props) => {
             orderUpdatesData
           );
         }
+
+        const positionpnlResponse = await fetch(URL + "positionpnl");
+        const positionpnlData = await positionpnlResponse.json();
+
+        setPositionpnl(positionpnlData);
 
         // Connect to WebSocket after fetching initial data
         if (stompClient) {
@@ -243,6 +253,11 @@ const WebSocketComponent = (props) => {
   const showUserTrade = (message) => {
     setUserTrade((prevUpdates) => [...prevUpdates, message]);
   };
+
+  const showPositionpnl = (message) => {
+    setPositionpnl(message);
+  };
+
 
   return (
     <>

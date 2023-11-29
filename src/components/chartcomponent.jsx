@@ -8,7 +8,7 @@ import HistogramSeries from "./Chart/histogramseries";
 import "../style/chart.css";
 
 const ChartComponent = (props) => {
-  const setSelectedSeriesList = ["Area", "Bar", "Baseline", "Candlestick", "Histogram"];
+  const setSelectedSeriesList = ["Bar", "Baseline", "Candlestick", "Histogram"];
   const [selectedSeries, setSelectedSeries] = useState("Candlestick");
 
   const handleSeriesChange = (index) => {
@@ -31,7 +31,6 @@ const ChartComponent = (props) => {
           ))}
         </select>
       </div>
-      {selectedSeries === "Area" && <AreaSeries {...props} />}
       {selectedSeries === "Bar" && <BarSeries {...props} />}
       {selectedSeries === "Baseline" && <BaselineSeries {...props} />}
       {selectedSeries === "Candlestick" && <CandlestickSeries {...props} />}
