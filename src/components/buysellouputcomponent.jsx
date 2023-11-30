@@ -67,7 +67,6 @@ const BuySellOutputComponent = (props) => {
             <table>
               <thead>
                 <tr>
-                  <th></th>
                   <th>Price</th>
                   <th>Size</th>
                   <th>Filled Size</th>
@@ -75,6 +74,7 @@ const BuySellOutputComponent = (props) => {
                   <th>Taker Side</th>
                   <th>Order Status</th>
                   <th>Cancel</th>
+                  <th>More Info</th>
                 </tr>
               </thead>
               <tbody>
@@ -97,7 +97,26 @@ const BuySellOutputComponent = (props) => {
                               toggleDropdown(order.orderId);
                             }}
                           >
+                            <td>{order.price}</td>
+                            <td>{order.size}</td>
+                            <td>{order.filledSizes}</td>
+                            <td>{new Date(date).toLocaleString()}</td>
+                            <td>{order.side}</td>
+                            <td>{order.orderStatus}</td>
                             <td>
+                              {order.orderStatus !== "FullyFilled" &&
+                                order.orderStatus !== "Cancelled" && (
+                                  <button
+                                    className="cancel-button"
+                                    onClick={() =>
+                                      handleCancelOrder(order.orderId)
+                                    }
+                                  >
+                                    Cancel Order
+                                  </button>
+                                )}
+                            </td>
+                            <td className="more">
                               {isOpen ? (
                                 <svg
                                   viewBox="0 0 1024 1024"
@@ -119,25 +138,6 @@ const BuySellOutputComponent = (props) => {
                                   <path d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z" />
                                 </svg>
                               )}
-                            </td>
-                            <td>{order.price}</td>
-                            <td>{order.size}</td>
-                            <td>{order.filledSizes}</td>
-                            <td>{new Date(date).toLocaleString()}</td>
-                            <td>{order.side}</td>
-                            <td>{order.orderStatus}</td>
-                            <td>
-                              {order.orderStatus !== "FullyFilled" &&
-                                order.orderStatus !== "Cancelled" && (
-                                  <button
-                                    className="cancel-button"
-                                    onClick={() =>
-                                      handleCancelOrder(order.orderId)
-                                    }
-                                  >
-                                    Cancel Order
-                                  </button>
-                                )}
                             </td>
                           </tr>
                           {selectedOrder === order && isOpen && (

@@ -70,7 +70,17 @@ tr:nth-child(even) {
 }
 
 .cancel-button:hover {
-  background-color: #000; /* Darker green on hover */
+  background-color: #767676; 
+  color: #000;
+}
+
+.more {
+  text-align: center;
+}
+
+.more:hover {
+  background-color: #767676;
+  color: #000;
 }
 
 .buyselloutput-table-overflow {

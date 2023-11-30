@@ -1,14 +1,12 @@
 import { useState } from 'react';
-import AreaSeries from "./Chart/areaseries";
 import BarSeries from "./Chart/barseries";
 import BaselineSeries from "./Chart/baselineseries";
 import CandlestickSeries from "./Chart/candlestickseries";
-import HistogramSeries from "./Chart/histogramseries";
 
 import "../style/chart.css";
 
 const ChartComponent = (props) => {
-  const setSelectedSeriesList = ["Bar", "Baseline", "Candlestick", "Histogram"];
+  const setSelectedSeriesList = ["Bar", "Baseline", "Candlestick"];
   const [selectedSeries, setSelectedSeries] = useState("Candlestick");
 
   const handleSeriesChange = (index) => {
@@ -34,7 +32,6 @@ const ChartComponent = (props) => {
       {selectedSeries === "Bar" && <BarSeries {...props} />}
       {selectedSeries === "Baseline" && <BaselineSeries {...props} />}
       {selectedSeries === "Candlestick" && <CandlestickSeries {...props} />}
-      {selectedSeries === "Histogram" && <HistogramSeries {...props} />}
     </div>
   );
 };
