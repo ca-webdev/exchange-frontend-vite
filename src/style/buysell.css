@@ -79,12 +79,12 @@
   }
 
   .custom-select {
-    width: 100%;
+    width: calc(100% - 10px);
     height: 40px;
   }
 
   .custom-input {
-    width: calc(100% - 10px);
+    width: calc(100% - 14px);
   }
 
   .custom-button {
