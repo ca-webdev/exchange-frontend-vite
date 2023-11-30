@@ -95,6 +95,11 @@ const WebSocketComponent = (props) => {
     const fetchInitialData = async () => {
       // Fetch initial data and connect to WebSocket
       try {
+        // Fetch order book data
+        const orderBookResponse = await fetch(URL + "orderbook");
+        const orderBook = await orderBookResponse.json();
+        setOrderBook(orderBook);
+
         const recentTradesResponse = await fetch(URL + "recenttrades");
         const recentTrades = await recentTradesResponse.json();
         const totalRecentTradesLength = recentTrades.length;
@@ -238,7 +243,7 @@ const WebSocketComponent = (props) => {
   };
 
   const showOrderBookUpdate = (message) => {
-    setOrderBook((prevUpdates) => [...prevUpdates, message]);
+    setOrderBook(message);
   };
 
   const showRecentTradeUpdate = (message) => {
@@ -260,7 +265,6 @@ const WebSocketComponent = (props) => {
   const showPositionpnl = (message) => {
     setPositionpnl(message);
   };
-
 
   return (
     <>
