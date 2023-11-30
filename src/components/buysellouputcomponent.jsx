@@ -1,14 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import PortfolioComponent from "./portfoliocomponent";
-
 import "../style/buyselloutput.css";
 
 const BuySellOutputComponent = (props) => {
   const { orderupdate, positionpnl, showPopup } = props;
-  const [selectedOrder, setSelectedOrder] = useState(null);
-  const [dropdownStates, setDropdownStates] = useState({});
+  const dropdownStatesRef = useRef({});
   const [activeTab, setActiveTab] = useState("orderHistory"); // Default to "orderHistory"
   const URL = import.meta.env.VITE_GET_URL;
+
+  useEffect(() => {
+    // Update the dropdownStatesRef when orderupdate changes
+    orderupdate.forEach((order) => {
+      dropdownStatesRef.current[order.orderId] =
+        dropdownStatesRef.current[order.orderId] || false;
+    });
+  }, [orderupdate]);
 
   const handleCancelOrder = (orderId) => {
     // Perform a POST request to cancel the order
@@ -38,10 +44,7 @@ const BuySellOutputComponent = (props) => {
   };
 
   const toggleDropdown = (orderId) => {
-    setDropdownStates((prevStates) => ({
-      ...prevStates,
-      [orderId]: !prevStates[orderId],
-    }));
+    dropdownStatesRef.current[orderId] = !dropdownStatesRef.current[orderId];
   };
 
   return (
@@ -67,7 +70,7 @@ const BuySellOutputComponent = (props) => {
             <table>
               <thead>
                 <tr>
-                  <th>Price(USD)</th>
+                  <th>Price</th>
                   <th>Size</th>
                   <th>Filled Size</th>
                   <th>Time</th>
@@ -84,7 +87,7 @@ const BuySellOutputComponent = (props) => {
                     .reverse()
                     .map((order, index) => {
                       const date = new Date(order.orderUpdateTime * 1000);
-                      const isOpen = dropdownStates[order.orderId];
+                      const isOpen = dropdownStatesRef.current[order.orderId];
 
                       return (
                         <React.Fragment key={index}>
@@ -93,7 +96,6 @@ const BuySellOutputComponent = (props) => {
                               order.side === "buy" ? "color-green" : "color-red"
                             }
                             onClick={() => {
-                              setSelectedOrder(order);
                               toggleDropdown(order.orderId);
                             }}
                           >
@@ -140,10 +142,10 @@ const BuySellOutputComponent = (props) => {
                               )}
                             </td>
                           </tr>
-                          {selectedOrder === order && isOpen && (
+                          {isOpen && (
                             <>
                               <tr>
-                                <th>Filled Price(USD)</th>
+                                <th>Filled Price</th>
                                 <th>Filled Size</th>
                               </tr>
                               {order.filledData &&
