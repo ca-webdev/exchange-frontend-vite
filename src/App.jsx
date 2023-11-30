@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import Dashboard from "./pages/dashboard";
 import WebSocketComponent from "./components/websocketcomponent";
-import NavBar from "./components/navbar";
 import PopupMessage from  "./components/popupmessage";
 
 import "./App.css";
@@ -27,8 +26,8 @@ function App(props) {
   
   return (
     <>
-      <NavBar />
-      <WebSocketComponent setOrderBook={setOrderBook} setRecentTrade={setRecentTrade} setOhlc={setOhlc} setOrderUpdate={setOrderUpdate} setUserTrade={setUserTrade} setPositionpnl={setPositionpnl} showPopup={showPopup} />
+      {/* <NavBar /> */}
+      <WebSocketComponent setOrderBook={setOrderBook} setRecentTrade={setRecentTrade} setOhlc={setOhlc} setOrderUpdate={setOrderUpdate} setUserTrade={setUserTrade} setPositionpnl={setPositionpnl} showPopup={showPopup} positionpnl={positionpnl} />
       <Dashboard {...props} orderBook={orderBook} recentTrade={recentTrade} ohlc={ohlc} orderupdate={orderupdate} usertrade={usertrade} positionpnl={positionpnl} showPopup={showPopup} />
       {isPopupVisible && (
         <PopupMessage message={popupMessage} onClose={hidePopup} />

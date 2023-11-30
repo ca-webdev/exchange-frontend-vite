@@ -3,6 +3,10 @@
   justify-content: center;
 }
 
+.orderbook-component {
+  width: 20%;
+}
+
 .chart-component {
   width: 58%;
 }
@@ -18,6 +22,7 @@
     align-items: center;
   }
 
+  .orderbook-component,
   .chart-component,
   .recenttrade-component {
     flex-grow: 1;

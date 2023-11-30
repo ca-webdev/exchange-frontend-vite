@@ -47,7 +47,7 @@ table {
   font-size: 12px;
   border-collapse: collapse;
   width: 100%;
-  max-height: 100px;
+  max-height: 180px;
 }
 
 td,
@@ -91,7 +91,7 @@ tr:nth-child(even) {
 }
 
 .buyselloutput-table-overflow {
-  height: 100px;
+  height: 180px;
   overflow: auto;
 }
 

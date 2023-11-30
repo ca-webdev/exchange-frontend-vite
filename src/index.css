@@ -3,3 +3,10 @@ body {
   color: #fff;
   margin: 0;
 }
+
+/* Mobile styles */
+@media screen and (max-width: 600px) {
+  body {
+    margin: 0 2px;
+  }
+}

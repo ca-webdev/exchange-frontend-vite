@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../style/buysell.css";
 
 const BuySellComponent = (props) => {
-  const { sendName } = props;
+  const { sendName, positionpnl } = props;
   const [price, setPrice] = useState("");
   const [size, setSize] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -46,6 +46,7 @@ const BuySellComponent = (props) => {
 
   return (
     <div className="buysell-centent">
+      <img className="logo" src="/logo.png" />
       <form onSubmit={handleSubmit}>
         <select id="side" name="side" className="custom-select">
           <option value="buy">Buy</option>
@@ -72,6 +73,17 @@ const BuySellComponent = (props) => {
         </button>
       </form>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
+      <div
+        className={
+          positionpnl.portfolioValueChange > 0 ? "color-green" : "color-red"
+        }
+      >
+        Portfolio Value:{" "}
+        {positionpnl.portfolioValue +
+          " (" +
+          (positionpnl.portfolioValueChange * 100).toFixed(2) +
+          "%)"}
+      </div>
     </div>
   );
 };

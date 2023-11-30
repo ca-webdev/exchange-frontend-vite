@@ -1,59 +1,59 @@
 .orderbook-content {
-    display: block;
-    box-shadow: 5px 2px 10px #5a5a5a;
-    background: rgb(90, 90, 90, 0.4);
-  }
-  
-  .orderbook-title {
-    margin: 15px 10px;
-  }
-  
+  display: block;
+  box-shadow: 5px 2px 10px #5a5a5a;
+  background: rgb(90, 90, 90, 0.4);
+}
+
+.orderbook-title {
+  margin: 15px 10px;
+}
+
+table {
+  font-size: 12px;
+  border-collapse: collapse;
+  width: 100%;
+  max-height: 580px;
+}
+
+td,
+th {
+  border: 1px solid #000;
+  padding: 4px;
+}
+
+tr:nth-child(even) {
+  background-color: #363636;
+}
+
+.table-overflow {
+  height: 580px;
+  overflow: auto;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+.color-green {
+  color: green;
+}
+
+.color-red {
+  color: red;
+}
+
+/* Mobile styles */
+@media screen and (max-width: 600px) {
   table {
-    font-size: 12px;
-    border-collapse: collapse;
-    width: 100%;
-    max-height: 500px;
+    font-size: 10px;
   }
-  
+
   td,
   th {
-    border: 1px solid #000;
-    padding: 4px;
+    padding: 2px;
   }
-  
-  tr:nth-child(even) {
-    background-color: #363636;
-  }
-  
+
   .table-overflow {
-    height: 500px;
-    overflow: auto;
+    height: 200px;
   }
-  
-  ::-webkit-scrollbar {
-    width: 10px;
-  }
-  
-  .color-green {
-    color: green;
-  }
-  
-  .color-red {
-    color: red;
-  }
-  
-  /* Mobile styles */
-  @media screen and (max-width: 600px) {
-    table {
-      font-size: 10px; 
-    }
-  
-    td,
-    th {
-      padding: 2px; 
-    }
-  
-    .table-overflow {
-      height: 200px;
-    }
-  }
+}
