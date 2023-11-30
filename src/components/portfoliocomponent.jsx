@@ -23,6 +23,8 @@ const PortfolioComponent = ({ portfolioData }) => {
               className={
                 portfolioData.portfolioValueChange > 0
                   ? "color-green"
+                  : portfolioData.portfolioValueChange === 0
+                  ? "color-white"
                   : "color-red"
               }
             >
@@ -34,9 +36,7 @@ const PortfolioComponent = ({ portfolioData }) => {
               <td>{portfolioData.totalPnL}</td>
               <td>{portfolioData.initialBalance}</td>
               <td>{portfolioData.portfolioValue}</td>
-              <td>
-                {(portfolioData.portfolioValueChange * 100).toFixed(2)}%
-              </td>
+              <td>{(portfolioData.portfolioValueChange * 100).toFixed(2)}%</td>
             </tr>
           </tbody>
         </table>

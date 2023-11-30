@@ -119,6 +119,10 @@ tr:nth-child(even) {
   color: red;
 }
 
+.color-white {
+  color: #fff;
+}
+
 /* Mobile styles */
 @media screen and (max-width: 600px) {
   table {

@@ -75,7 +75,11 @@ const BuySellComponent = (props) => {
       {errorMessage && <p className="error-message">{errorMessage}</p>}
       <div
         className={
-          positionpnl.portfolioValueChange > 0 ? "color-green" : "color-red"
+          positionpnl.portfolioValueChange > 0
+            ? "color-green"
+            : positionpnl.portfolioValueChange === 0
+            ? "color-white"
+            : "color-red"
         }
       >
         Portfolio Value:{" "}
