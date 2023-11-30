@@ -18,8 +18,8 @@ const OrderBookComponent = (props) => {
   };
 
   // Slice the bid and ask order books to get only the first 10 rows respectively
-  const askOrderBookSlice = Object.entries(orderBook.askOrderBook).slice(0, 10);
-  const bidOrderBookSlice = Object.entries(orderBook.bidOrderBook).slice(0, 10);
+  const askOrderBookSlice = Object.entries(orderBook.askOrderBook).slice(0, 12);
+  const bidOrderBookSlice = Object.entries(orderBook.bidOrderBook).slice(0, 12);
 
   const askCumulativeTotal = calculateCumulativeTotal(
     Object.fromEntries(askOrderBookSlice.reverse())
