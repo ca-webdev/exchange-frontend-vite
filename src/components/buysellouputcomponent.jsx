@@ -84,7 +84,12 @@ const BuySellOutputComponent = (props) => {
                 {orderupdate &&
                   orderupdate
                     .slice()
-                    .reverse()
+                    .sort((a, b) => {
+                      if (a.orderUpdateTime === b.orderUpdateTime) {
+                        return a.orderIndex - b.orderIndex;
+                      }
+                      return b.orderUpdateTime - a.orderUpdateTime;
+                    })
                     .map((order, index) => {
                       const date = new Date(order.orderUpdateTime * 1000);
                       const isOpen = dropdownStatesRef.current[order.orderId];
