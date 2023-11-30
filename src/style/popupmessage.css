@@ -4,8 +4,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Semi-transparent gray color */
-  z-index: 999; /* Ensure the overlay is above other content */
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
 }
 
 .popup {
@@ -21,8 +21,8 @@
   color: #fff;
   border: 1px solid #ccc;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  z-index: 1000; /* Adjust the z-index value */
-  pointer-events: auto; /* Allow interactions with elements inside the popup */
+  z-index: 1000;
+  pointer-events: auto;
 }
 
 .closeButton {
@@ -36,5 +36,5 @@
   color: #fff;
   border: none;
   border-radius: 5px;
-  z-index: 1001; /* Ensure the close button is above the popup */
+  z-index: 1001;
 }
