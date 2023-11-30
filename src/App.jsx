@@ -15,10 +15,8 @@ function App(props) {
   const [positionpnl, setPositionpnl] = useState({});
   const [isPopupVisible, setPopupVisible] = useState(false);
   const [popupMessage, setPopupMessage] = useState('');
-  console.log("orderbook", orderbook);
 
   const showPopup = (message) => {
-    console.log("message", message)
     setPopupMessage(message);
     setPopupVisible(true);
   };
