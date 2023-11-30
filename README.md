@@ -1,12 +1,45 @@
-# React + Vite
+# Exchange Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A Exchange application built with [React](https://reactjs.org/) for managing tasks.
 
-Currently, two official plugins are available:
+## Table of Contents
+- [Introduction](#introduction)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Technologies Used](#technologies-used)
+- [DEMO LINK](#demo-link)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Introduction
 
+Welcome to the Exchange Application! This application provides a user-friendly interface to for user to do the exchange.
 
+## Features
+
+- Order Book
+- Input Buy/Sell Order
+- Chart (Bar/Baseline/Candlestick)
+- Recent Trade
+- Order History
+- Portfolio
+
+## Installation
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/ca-webdev/exchange-frontend-vite.git
+   ```
+   
+2. **Install dependencies:**
+
+   ```bash
+   cd todoapplication
+   npm install
+   ```
+## Technologies Used
+
+   - [React](https://reactjs.org/): A JavaScript library for building user interfaces.
+     
 # DEMO LINK
 https://exchange-frontend-vite.vercel.app/
