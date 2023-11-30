@@ -73,26 +73,28 @@ const BuySellComponent = (props) => {
         </button>
       </form>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
-      <div
-        className={
-          positionpnl.portfolioValueChange > 0
-            ? "color-green"
-            : positionpnl.portfolioValueChange === 0
-            ? "color-white"
-            : "color-red"
-        }
-      >
+      <div>
         Portfolio Value:{" "}
-        {positionpnl &&
-          positionpnl.portfolioValue &&
-          positionpnl.portfolioValue.toFixed(2) +
-            " (" +
-            (
-              positionpnl &&
-              positionpnl.portfolioValueChange &&
-              positionpnl.portfolioValueChange * 100
-            ).toFixed(2) +
-            "%)"}
+        <span
+          className={
+            positionpnl.portfolioValueChange > 0
+              ? "color-green"
+              : positionpnl.portfolioValueChange === 0
+              ? "color-white"
+              : "color-red"
+          }
+        >
+          {positionpnl &&
+            positionpnl.portfolioValue &&
+            positionpnl.portfolioValue.toFixed(2) +
+              " (" +
+              (
+                positionpnl &&
+                positionpnl.portfolioValueChange &&
+                positionpnl.portfolioValueChange * 100
+              ).toFixed(2) +
+              "%)"}
+        </span>
       </div>
     </div>
   );
