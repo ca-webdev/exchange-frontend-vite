@@ -1,27 +1,27 @@
 .dashboard-content {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
+}
+
+.chart-component {
+  width: 58%;
+}
+
+.recenttrade-component {
+  width: 20%;
+}
+
+/* Mobile styles */
+@media screen and (max-width: 600px) {
+  .dashboard-content {
+    flex-direction: column;
+    align-items: center;
   }
-  
-  .chart-component {
-    width: 58%;
-  }
-  
+
+  .chart-component,
   .recenttrade-component {
-    width: 20%;
+    flex-grow: 1;
+    width: 100%;
+    margin-bottom: 20px;
   }
-  
-  /* Mobile styles */
-  @media screen and (max-width: 600px) {
-    .dashboard-content {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .chart-component,
-    .recenttrade-component {
-      flex-grow: 1;
-      width: 100%;
-      margin-bottom: 20px;
-    }
-  }
+}

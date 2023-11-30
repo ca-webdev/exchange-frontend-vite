@@ -45,12 +45,12 @@ tr:nth-child(even) {
 /* Mobile styles */
 @media screen and (max-width: 600px) {
   table {
-    font-size: 10px; 
+    font-size: 10px;
   }
 
   td,
   th {
-    padding: 2px; 
+    padding: 2px;
   }
 
   .table-overflow {

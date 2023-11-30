@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState } from 'react';
 import Dashboard from "./pages/dashboard";
 import WebSocketComponent from "./components/websocketcomponent";
 import NavBar from "./components/navbar";
-import PopupMessage from "./components/popupmessage";
+import PopupMessage from  "./components/popupmessage";
 
 import "./App.css";
 
@@ -14,10 +14,9 @@ function App(props) {
   const [usertrade, setUserTrade] = useState([]);
   const [positionpnl, setPositionpnl] = useState({});
   const [isPopupVisible, setPopupVisible] = useState(false);
-  const [popupMessage, setPopupMessage] = useState("");
+  const [popupMessage, setPopupMessage] = useState('');
 
   const showPopup = (message) => {
-    console.log("message", message);
     setPopupMessage(message);
     setPopupVisible(true);
   };
@@ -25,29 +24,12 @@ function App(props) {
   const hidePopup = () => {
     setPopupVisible(false);
   };
-
+  
   return (
     <>
       <NavBar />
-      <WebSocketComponent
-        setOrderBook={setOrderBook}
-        setRecentTrade={setRecentTrade}
-        setOhlc={setOhlc}
-        setOrderUpdate={setOrderUpdate}
-        setUserTrade={setUserTrade}
-        setPositionpnl={setPositionpnl}
-        showPopup={showPopup}
-      />
-      <Dashboard
-        {...props}
-        orderBook={orderBook}
-        recentTrade={recentTrade}
-        ohlc={ohlc}
-        orderupdate={orderupdate}
-        usertrade={usertrade}
-        positionpnl={positionpnl}
-        showPopup={showPopup}
-      />
+      <WebSocketComponent setOrderBook={setOrderBook} setRecentTrade={setRecentTrade} setOhlc={setOhlc} setOrderUpdate={setOrderUpdate} setUserTrade={setUserTrade} setPositionpnl={setPositionpnl} showPopup={showPopup} />
+      <Dashboard {...props} orderBook={orderBook} recentTrade={recentTrade} ohlc={ohlc} orderupdate={orderupdate} usertrade={usertrade} positionpnl={positionpnl} showPopup={showPopup} />
       {isPopupVisible && (
         <PopupMessage message={popupMessage} onClose={hidePopup} />
       )}

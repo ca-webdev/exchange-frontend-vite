@@ -1,10 +1,13 @@
-import { createChart, ColorType } from 'lightweight-charts';
-import { useEffect, useRef } from 'react';
+import { createChart, ColorType } from "lightweight-charts";
+import { useEffect, useRef } from "react";
 
 const Baseline = (props) => {
   const {
     recentTrade,
-    colors: { backgroundColor = 'rgb(90, 90, 90, 0.1)', textColor = 'white' } = {},
+    colors: {
+      backgroundColor = "rgb(90, 90, 90, 0.1)",
+      textColor = "white",
+    } = {},
   } = props;
 
   const chartContainerRef = useRef();
@@ -13,7 +16,9 @@ const Baseline = (props) => {
 
   useEffect(() => {
     const handleResize = () => {
-      chartRef.current.applyOptions({ width: chartContainerRef.current.clientWidth });
+      chartRef.current.applyOptions({
+        width: chartContainerRef.current.clientWidth,
+      });
     };
 
     if (!chartRef.current) {
@@ -35,9 +40,9 @@ const Baseline = (props) => {
 
       // Add a single baseline series with a fixed color
       baselineSeriesRef.current = chartRef.current.addBaselineSeries({
-        lineColor: '#008000',
-        baselineTopColor: '#008000',
-        baselineBottomColor: '#008000',
+        lineColor: "#008000",
+        baselineTopColor: "#008000",
+        baselineBottomColor: "#008000",
         lastValueVisible: false,
         priceLineVisible: false,
       });
@@ -54,7 +59,9 @@ const Baseline = (props) => {
       };
 
       const existingData = baselineSeriesRef.current.data() || [];
-      const existingDataIndex = existingData.findIndex((item) => item.time === data.time);
+      const existingDataIndex = existingData.findIndex(
+        (item) => item.time === data.time
+      );
 
       if (existingDataIndex !== -1) {
         existingData[existingDataIndex] = data;
@@ -65,16 +72,16 @@ const Baseline = (props) => {
       baselineSeriesRef.current.setData(existingData);
     });
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, [recentTrade, backgroundColor, textColor]);
 
   return (
-    <div style={{ width: '100%', height: '300px' }}>
-      <div ref={chartContainerRef} style={{ width: '100%', height: '100%' }} />
+    <div style={{ width: "100%", height: "300px" }}>
+      <div ref={chartContainerRef} style={{ width: "100%", height: "100%" }} />
     </div>
   );
 };
