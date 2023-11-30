@@ -29,14 +29,19 @@ const PortfolioComponent = ({ portfolioData }) => {
               }
             >
               <td>{portfolioData.position}</td>
-              <td>{portfolioData.averageEntryPrice.toFixed(2)}</td>
-              <td>{portfolioData.marketPrice.toFixed(2)}</td>
-              <td>{portfolioData.unrealizedPnL.toFixed(2)}</td>
-              <td>{portfolioData.realizedPnL.toFixed(2)}</td>
-              <td>{portfolioData.totalPnL.toFixed(2)}</td>
-              <td>{portfolioData.initialBalance.toFixed(2)}</td>
-              <td>{portfolioData.portfolioValue.toFixed(2)}</td>
-              <td>{(portfolioData.portfolioValueChange * 100).toFixed(2)}%</td>
+              <td>{portfolioData.averageEntryPrice}</td>
+              <td>{portfolioData.marketPrice}</td>
+              <td>{portfolioData.unrealizedPnL}</td>
+              <td>{portfolioData.realizedPnL}</td>
+              <td>{portfolioData.totalPnL}</td>
+              <td>{portfolioData.initialBalance}</td>
+              <td>{portfolioData.portfolioValue}</td>
+              <td>
+                {portfolioData &&
+                  portfolioData.portfolioValueChange &&
+                  (portfolioData.portfolioValueChange * 100).toFixed(2)}
+                %
+              </td>
             </tr>
           </tbody>
         </table>
