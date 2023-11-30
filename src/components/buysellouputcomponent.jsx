@@ -67,7 +67,7 @@ const BuySellOutputComponent = (props) => {
             <table>
               <thead>
                 <tr>
-                  <th>Price</th>
+                  <th>Price(USD)</th>
                   <th>Size</th>
                   <th>Filled Size</th>
                   <th>Time</th>
@@ -143,7 +143,7 @@ const BuySellOutputComponent = (props) => {
                           {selectedOrder === order && isOpen && (
                             <>
                               <tr>
-                                <th>Filled Price</th>
+                                <th>Filled Price(USD)</th>
                                 <th>Filled Size</th>
                               </tr>
                               {order.filledData &&

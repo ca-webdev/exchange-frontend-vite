@@ -12,7 +12,7 @@ const RecentTradesComponent = (props) => {
       <div className="table-overflow">
         <table>
           <tr>
-            <th>Price</th>
+            <th>Price(USD)</th>
             <th>Size</th>
             <th>Time</th>
             <th>Taker Side</th>

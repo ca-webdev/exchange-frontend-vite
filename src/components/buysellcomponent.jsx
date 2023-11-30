@@ -83,7 +83,7 @@ const BuySellComponent = (props) => {
         }
       >
         Portfolio Value:{" "}
-        {positionpnl.portfolioValue +
+        {positionpnl.portfolioValue.toFixed(2) +
           " (" +
           (positionpnl.portfolioValueChange * 100).toFixed(2) +
           "%)"}
