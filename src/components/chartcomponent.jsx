@@ -17,7 +17,7 @@ const ChartComponent = (props) => {
     <div className="chart-content">
       <h3 className="chart-title">Chart</h3>
       <div>
-        <label>Select Chart: </label>
+        <label className="chart-title">Select Chart: </label>
         <select
           onChange={(e) => handleSeriesChange(e.target.value)}
           value={selectedSeries}
