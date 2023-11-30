@@ -17,8 +17,8 @@ const OrderBookComponent = (props) => {
     });
   };
 
-  // Slice the bid and ask order books to get only the first 10 and last 10 rows respectively
-  const askOrderBookSlice = Object.entries(orderBook.askOrderBook).slice(-10);
+  // Slice the bid and ask order books to get only the first 10 rows respectively
+  const askOrderBookSlice = Object.entries(orderBook.askOrderBook).slice(0, 10);
   const bidOrderBookSlice = Object.entries(orderBook.bidOrderBook).slice(0, 10);
 
   const askCumulativeTotal = calculateCumulativeTotal(
@@ -35,9 +35,9 @@ const OrderBookComponent = (props) => {
         <table>
           <thead>
             <tr>
-              <th>Price</th>
-              <th>Size (USD)</th>
-              <th>Total (USD)</th>
+              <th>Price (USD)</th>
+              <th>Size</th>
+              <th>Total</th>
             </tr>
           </thead>
           <tbody>
