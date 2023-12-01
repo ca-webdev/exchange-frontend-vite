@@ -74,7 +74,7 @@ const BuySellOutputComponent = (props) => {
                   <th>Size</th>
                   <th>Filled Size</th>
                   <th>Time</th>
-                  <th>Taker Side</th>
+                  <th>Side</th>
                   <th>Order Status</th>
                   <th>Cancel</th>
                   <th>More Info</th>
