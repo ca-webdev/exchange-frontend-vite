@@ -1,23 +1,14 @@
-import React from "react";
-import RecentTradesComponent from "./recenttradescomponent";
+import React, { useEffect, useState } from "react";
 import "../style/orderbook.css";
 
 const OrderBookComponent = (props) => {
-  const { orderBook } = props;
+  const { orderBook, recentTrade } = props;
+  const reversedTrades = recentTrade ? [...recentTrade].reverse() : [];
+  const [takerColor, setTakerColor] = useState("");
 
   if (!orderBook || !orderBook.askOrderBook || !orderBook.bidOrderBook) {
     return <p>Loading...</p>;
   }
-
-  let topPrice, takerColor;
-  const RecentTradesComponent = (props) => {
-    const { recentTrade } = props;
-    const reversedTrades = recentTrade ? [...recentTrade].reverse() : [];
-    // Get the top (1) price
-    topPrice = reversedTrades.length > 0 ? reversedTrades[0].price : null;
-    takerColor = reversedTrades.length > 0 ? reversedTrades[0].takerSide : null;
-    return topPrice;
-  };
 
   const calculateCumulativeTotal = (orderBook) => {
     let cumulativeTotal = 0;
@@ -38,6 +29,14 @@ const OrderBookComponent = (props) => {
   const bidCumulativeTotal = calculateCumulativeTotal(
     Object.fromEntries(bidOrderBookSlice)
   );
+
+  const UpdatePrice = () => {
+    const topPrice = reversedTrades.length > 0 ? reversedTrades[0].price : null;
+    setTakerColor(
+      reversedTrades.length > 0 ? reversedTrades[0].takerSide : null
+    );
+    return topPrice;
+  };
 
   return (
     <div className="orderbook-content">
@@ -67,19 +66,9 @@ const OrderBookComponent = (props) => {
                   fontSize: "2.2em",
                   textAlign: "center",
                 }}
-                className={takerColor === "B" ? "color-red" : "color-green"}
+                className={takerColor === "B" ? "color-green" : "color-red"}
               >
-                <RecentTradesComponent {...props} topPrice={topPrice} />
-                <svg
-                  viewBox="0 0 1024 1024"
-                  fill="currentColor"
-                  height="1em"
-                  width="1em"
-                  {...props}
-                  style={{ verticalAlign: "middle" }}
-                >
-                  <path d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z" />
-                </svg>
+                <UpdatePrice />
               </td>
             </tr>
             {bidOrderBookSlice.map(([price, size], index) => (
